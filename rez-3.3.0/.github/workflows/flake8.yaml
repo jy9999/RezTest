@@ -1,0 +1,53 @@
+name: flake8
+on:
+  pull_request:
+    paths:
+      - 'src/rez/**.py'
+      - 'src/rezplugins/**.py'
+      - '.github/workflows/flake8.yaml'
+      - '!src/rez/utils/_version.py'
+      - '!src/rez/data/**'
+      - '!src/rez/vendor/**'
+      - '!src/rez/backport/**'
+  push:
+    paths:
+      - 'src/rez/**.py'
+      - 'src/rezplugins/**.py'
+      - '.github/workflows/flake8.yaml'
+      - '!src/rez/utils/_version.py'
+      - '!src/rez/data/**'
+      - '!src/rez/vendor/**'
+      - '!src/rez/backport/**'
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Run Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Set up Python
+        uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: 3.11
+
+      - name: Install Dependencies
+        run: |
+          pip install flake8
+
+      - name: Run flake8
+        run: >-
+          find -name '*.py'
+          -not -path './rez/vendor/*'
+          -not -path './rez/data/*'
+          -not -path './rez/backport/*'
+          -not -path './build_utils/*'
+          -not -path './support/*'
+          -not -path './rezgui/*'
+          | xargs flake8
+        working-directory: src

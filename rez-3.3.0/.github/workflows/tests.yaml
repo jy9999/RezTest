@@ -1,0 +1,110 @@
+name: tests
+on:
+  pull_request:
+    paths:
+    - 'src/**'
+    - 'install.py'
+    - 'setup.py'
+    - 'MANIFEST.in'
+    - 'pyproject.toml'
+    - '.github/workflows/tests.yaml'
+    - '!src/rez/utils/_version.py'
+    - '!**.md'
+  push:
+    paths:
+    - 'src/**'
+    - 'install.py'
+    - 'setup.py'
+    - 'MANIFEST.in'
+    - 'pyproject.toml'
+    - '.github/workflows/tests.yaml'
+    - '!src/rez/utils/_version.py'
+    - '!**.md'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    name: Tests
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: ['macos-latest', 'ubuntu-latest', 'windows-latest']
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
+        include:
+        - os: macos-latest
+          shells: 'sh,csh,bash,tcsh,zsh,pwsh'
+          rez-path: /installdir/bin/rez
+        - os: ubuntu-latest
+          shells: 'sh,csh,bash,tcsh,zsh,pwsh'
+          rez-path: /installdir/bin/rez
+        - os: windows-latest
+          shells: 'cmd,pwsh,gitbash'
+          rez-path: \installdir\Scripts\rez
+
+      fail-fast: false
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+    - name: Setup python ${{ matrix.python-version }}
+      uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install test system dependencies (linux)
+      if: ${{ startsWith(matrix.os, 'ubuntu-') }}
+      run: |
+        set -ex
+        sudo apt-get update
+
+        cmake --version
+        pwsh --version
+
+        sudo apt-get install -y csh tcsh zsh
+
+    - name: Install rez
+      run: python ./install.py ./installdir
+
+    - name: Install test system dependencies (macOS)
+      if: ${{ startsWith(matrix.os, 'macos-') }}
+      run: |
+        set -ex
+        # Make sure to use cmake < 4. CMake 4 dropped support for features
+        # from cmake < 3.5 and rez uses these features.
+        brew uninstall cmake
+        python -m pip install 'cmake<4'
+
+    - name: Setup environment variables
+      shell: bash
+      env:
+        _GH_REZ_INSTALL_PATH: ${{ github.workspace }}${{ matrix.rez-path }}
+      run: |
+        echo "$_GH_REZ_INSTALL_PATH" >> $GITHUB_PATH
+
+    - name: Install test dependencies
+      run: rez-python -m pip install pytest-cov parameterized
+
+    - name: Run tests
+      id: tests
+      run: rez-selftest -v -- --cov=rez --cov=rezplugins --cov-report=xml:coverage.xml
+      env:
+        _REZ_ENSURE_TEST_SHELLS: ${{ matrix.shells }}
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@5a1091511ad55cbe89839c7260b706298ca349f7 # v5.5.1
+      # Run on both success and failure, but only if coverage.xml exists.
+      if: ${{ hashFiles('coverage.xml') != '' && (steps.tests.outcome == 'success' || steps.tests.outcome == 'failure') }}
+      with:
+        slug: AcademySoftwareFoundation/rez
+        files: 'coverage.xml'
+        token: ${{ secrets.CODECOV_TOKEN }}
