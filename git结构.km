@@ -49,7 +49,7 @@
                         "data": {
                             "id": "der3562oc6g0",
                             "created": 1765019355313,
-                            "text": "本地仓库",
+                            "text": "本地仓库的Branch",
                             "expandState": "expand",
                             "layout": null
                         },
@@ -110,10 +110,7 @@
                                                                     "id": "der3bl9utu80",
                                                                     "created": 1765019858584,
                                                                     "text": "工作区",
-                                                                    "layout_bottom_offset": {
-                                                                        "x": -18.666666666666742,
-                                                                        "y": 13.333333333333371
-                                                                    }
+                                                                    "layout": null
                                                                 },
                                                                 "children": []
                                                             }
