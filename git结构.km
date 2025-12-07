@@ -1,0 +1,137 @@
+{
+    "root": {
+        "data": {
+            "id": "der2fqr81qg0",
+            "created": 1765017362865,
+            "text": "云端远程仓库"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "der2g9k0dps0",
+                    "created": 1765017403787,
+                    "text": "拉取 pull(下载)",
+                    "layout": null
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "der35rub5280",
+                            "created": 1765019402696,
+                            "text": "本地仓库",
+                            "expandState": "expand",
+                            "layout": null
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "der2inh4ta80",
+                                    "created": 1765017590817,
+                                    "text": "更新",
+                                    "layout": null
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "der2goqwycw0",
+                    "created": 1765017436857,
+                    "text": "推送(上传)",
+                    "layout": null,
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "der3562oc6g0",
+                            "created": 1765019355313,
+                            "text": "本地仓库",
+                            "expandState": "expand",
+                            "layout": null
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "der2iblxeww0",
+                                    "created": 1765017564985,
+                                    "text": "提交 commit",
+                                    "expandState": "expand",
+                                    "layout": null,
+                                    "layout_left_offset": {
+                                        "x": -4,
+                                        "y": 46
+                                    }
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "der2jm6euf40",
+                                            "created": 1765017666356,
+                                            "text": "缓冲区 暂存区 Staging Area",
+                                            "expandState": "expand",
+                                            "layout": null,
+                                            "layout_left_offset": {
+                                                "x": 5.333333333333314,
+                                                "y": 60
+                                            }
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "der2igqw4m80",
+                                                    "created": 1765017576169,
+                                                    "text": "添加 add",
+                                                    "layout": null,
+                                                    "layout_left_offset": {
+                                                        "x": 0.6666666666667425,
+                                                        "y": 47.333333333333314
+                                                    },
+                                                    "expandState": "expand"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "der2ii4rf6g0",
+                                                            "created": 1765017579185,
+                                                            "text": "本地修改",
+                                                            "layout": null,
+                                                            "layout_left_offset": {
+                                                                "x": -29.333333333333258,
+                                                                "y": 97.33333333333331
+                                                            }
+                                                        },
+                                                        "children": [
+                                                            {
+                                                                "data": {
+                                                                    "id": "der3bl9utu80",
+                                                                    "created": 1765019858584,
+                                                                    "text": "工作区",
+                                                                    "layout_bottom_offset": {
+                                                                        "x": -18.666666666666742,
+                                                                        "y": 13.333333333333371
+                                                                    }
+                                                                },
+                                                                "children": []
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "structure",
+    "theme": "snow",
+    "version": "1.4.43"
+}
