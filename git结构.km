@@ -9,115 +9,184 @@
         "children": [
             {
                 "data": {
-                    "id": "der2g9k0dps0",
-                    "created": 1765017403787,
-                    "text": "拉取 pull(下载)",
-                    "layout": null,
-                    "expandState": "expand"
+                    "id": "desbk2p2za80",
+                    "created": 1765144652259,
+                    "text": "云端创建分支 Branch",
+                    "expandState": "expand",
+                    "layout": null
                 },
                 "children": [
                     {
                         "data": {
-                            "id": "der35rub5280",
-                            "created": 1765019402696,
-                            "text": "本地仓库的Branch",
+                            "id": "desatzkbl080",
+                            "created": 1765142607973,
+                            "text": "切换分支 checkout(或检出)",
                             "expandState": "expand",
                             "layout": null
                         },
                         "children": [
                             {
                                 "data": {
-                                    "id": "der2inh4ta80",
-                                    "created": 1765017590817,
-                                    "text": "更新",
+                                    "id": "der2g9k0dps0",
+                                    "created": 1765017403787,
+                                    "text": "拉取 pull(下载)\n   |-获取 fetch\n   |->合并 merge",
                                     "layout": null,
-                                    "expandState": "expand"
-                                },
-                                "children": []
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "data": {
-                    "id": "der2goqwycw0",
-                    "created": 1765017436857,
-                    "text": "推送(上传)",
-                    "layout": null,
-                    "expandState": "expand"
-                },
-                "children": [
-                    {
-                        "data": {
-                            "id": "der3562oc6g0",
-                            "created": 1765019355313,
-                            "text": "本地仓库的Branch",
-                            "expandState": "expand",
-                            "layout": null
-                        },
-                        "children": [
-                            {
-                                "data": {
-                                    "id": "der2iblxeww0",
-                                    "created": 1765017564985,
-                                    "text": "提交 commit",
                                     "expandState": "expand",
-                                    "layout": null,
-                                    "layout_left_offset": {
-                                        "x": -4,
-                                        "y": 46
-                                    }
+                                    "priority": 5
                                 },
                                 "children": [
                                     {
                                         "data": {
-                                            "id": "der2jm6euf40",
-                                            "created": 1765017666356,
-                                            "text": "缓冲区 暂存区 Staging Area",
+                                            "id": "desaztr4blk0",
+                                            "created": 1765143065508,
+                                            "text": "获取 fetch",
                                             "expandState": "expand",
-                                            "layout": null,
-                                            "layout_left_offset": {
-                                                "x": 5.333333333333314,
-                                                "y": 60
-                                            }
+                                            "layout": null
                                         },
                                         "children": [
                                             {
                                                 "data": {
-                                                    "id": "der2igqw4m80",
-                                                    "created": 1765017576169,
-                                                    "text": "添加 add",
-                                                    "layout": null,
-                                                    "layout_left_offset": {
-                                                        "x": 0.6666666666667425,
-                                                        "y": 47.333333333333314
-                                                    },
-                                                    "expandState": "expand"
+                                                    "id": "desb00ulngo0",
+                                                    "created": 1765143080956,
+                                                    "text": "变基 Rebase\n将本地分支作为差异加到更新主分支后",
+                                                    "layout": null
                                                 },
                                                 "children": [
                                                     {
                                                         "data": {
-                                                            "id": "der2ii4rf6g0",
-                                                            "created": 1765017579185,
-                                                            "text": "本地修改",
-                                                            "layout": null,
-                                                            "layout_left_offset": {
-                                                                "x": -29.333333333333258,
-                                                                "y": 97.33333333333331
-                                                            },
-                                                            "expandState": "collapse"
+                                                            "id": "der35rub5280",
+                                                            "created": 1765019402696,
+                                                            "text": "本地仓库在主分支上 原分支线已移除",
+                                                            "expandState": "expand",
+                                                            "layout": null
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "desazzvoo9k0",
+                                                    "created": 1765143078845,
+                                                    "text": "合并 merge",
+                                                    "expandState": "expand",
+                                                    "layout": null
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "der35rub5280",
+                                                            "created": 1765019402696,
+                                                            "text": "本地仓库在主分支上 原分支线仍存在",
+                                                            "expandState": "expand",
+                                                            "layout": null
+                                                        },
+                                                        "children": []
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "der2goqwycw0",
+                                    "created": 1765017436857,
+                                    "text": "推送 push(上传)",
+                                    "layout": null,
+                                    "expandState": "expand"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "der3562oc6g0",
+                                            "created": 1765019355313,
+                                            "text": "本地仓库的分支 Branch",
+                                            "expandState": "expand",
+                                            "layout": null
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "der2iblxeww0",
+                                                    "created": 1765017564985,
+                                                    "text": "提交 commit",
+                                                    "expandState": "expand",
+                                                    "layout": null,
+                                                    "layout_left_offset": {
+                                                        "x": -4,
+                                                        "y": 46
+                                                    },
+                                                    "priority": 1
+                                                },
+                                                "children": [
+                                                    {
+                                                        "data": {
+                                                            "id": "desap8rpi400",
+                                                            "created": 1765142236189,
+                                                            "text": "贮藏 stash",
+                                                            "expandState": "expand",
+                                                            "layout": null
                                                         },
                                                         "children": [
                                                             {
                                                                 "data": {
-                                                                    "id": "der3bl9utu80",
-                                                                    "created": 1765019858584,
-                                                                    "text": "工作区",
+                                                                    "id": "der2jm6euf40",
+                                                                    "created": 1765017666356,
+                                                                    "text": "暂存区 Staging Area 亦称缓冲区",
+                                                                    "expandState": "expand",
                                                                     "layout": null,
-                                                                    "expandState": "expand"
+                                                                    "layout_left_offset": {
+                                                                        "x": 5.333333333333314,
+                                                                        "y": 60
+                                                                    }
                                                                 },
-                                                                "children": []
+                                                                "children": [
+                                                                    {
+                                                                        "data": {
+                                                                            "id": "der2igqw4m80",
+                                                                            "created": 1765017576169,
+                                                                            "text": "添加 add",
+                                                                            "layout": null,
+                                                                            "layout_left_offset": {
+                                                                                "x": 0.6666666666667425,
+                                                                                "y": 47.333333333333314
+                                                                            },
+                                                                            "expandState": "expand",
+                                                                            "priority": 2
+                                                                        },
+                                                                        "children": [
+                                                                            {
+                                                                                "data": {
+                                                                                    "id": "der2ii4rf6g0",
+                                                                                    "created": 1765017579185,
+                                                                                    "text": "本地修改 status(查询 亦可用于暂存区)",
+                                                                                    "layout": null,
+                                                                                    "layout_left_offset": {
+                                                                                        "x": -29.333333333333258,
+                                                                                        "y": 97.33333333333331
+                                                                                    },
+                                                                                    "expandState": "expand",
+                                                                                    "priority": 3
+                                                                                },
+                                                                                "children": [
+                                                                                    {
+                                                                                        "data": {
+                                                                                            "id": "der3bl9utu80",
+                                                                                            "created": 1765019858584,
+                                                                                            "text": "工作区",
+                                                                                            "layout": null,
+                                                                                            "expandState": "expand",
+                                                                                            "priority": 4
+                                                                                        },
+                                                                                        "children": []
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
                                                             }
                                                         ]
                                                     }
@@ -135,7 +204,7 @@
                 "data": {
                     "id": "des9f410p400",
                     "created": 1765138621117,
-                    "text": "提交pr",
+                    "text": "提交 Pull Requests",
                     "expandState": "expand",
                     "layout": null
                 },
@@ -144,7 +213,7 @@
                         "data": {
                             "id": "des9cqsd8dk0",
                             "created": 1765138435567,
-                            "text": "fork并做出的修改",
+                            "text": "fork仓库并做出的修改",
                             "expandState": "expand",
                             "layout": null
                         },
@@ -154,9 +223,19 @@
             },
             {
                 "data": {
+                    "id": "desash79dyw0",
+                    "created": 1765142489637,
+                    "text": "子模块 submodule",
+                    "layout": null,
+                    "priority": 6
+                },
+                "children": []
+            },
+            {
+                "data": {
                     "id": "crik03bhofk0",
                     "created": 1680061232632,
-                    "text": "与SVN的异同点",
+                    "text": "与SVN的异同",
                     "expandState": "expand",
                     "layout": null
                 },
@@ -171,7 +250,8 @@
                             "layout_left_offset": {
                                 "x": -4,
                                 "y": 46
-                            }
+                            },
+                            "priority": 1
                         },
                         "children": [
                             {
@@ -184,7 +264,8 @@
                                         "x": 0.6666666666667425,
                                         "y": 47.333333333333314
                                     },
-                                    "expandState": "expand"
+                                    "expandState": "expand",
+                                    "priority": 2
                                 },
                                 "children": [
                                     {
@@ -197,7 +278,8 @@
                                                 "x": -29.333333333333258,
                                                 "y": 97.33333333333331
                                             },
-                                            "expandState": "collapse"
+                                            "expandState": "expand",
+                                            "priority": 3
                                         },
                                         "children": [
                                             {
@@ -206,7 +288,8 @@
                                                     "created": 1765019858584,
                                                     "text": "工作区",
                                                     "layout": null,
-                                                    "expandState": "expand"
+                                                    "expandState": "expand",
+                                                    "priority": 4
                                                 },
                                                 "children": []
                                             }
@@ -221,8 +304,18 @@
                             "id": "crik0ucgzns0",
                             "created": 1680061291464,
                             "text": "B用户更新",
-                            "priority": null,
+                            "priority": 5,
                             "layout": null
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "desaszgyigw0",
+                            "created": 1765142529405,
+                            "text": "外部引用",
+                            "layout": null,
+                            "priority": 6
                         },
                         "children": []
                     }
