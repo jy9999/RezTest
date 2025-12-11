@@ -33,6 +33,7 @@ def get_family_by_name(family_name):
 
 
 print('aaa')
+print('bbb')
 
 class PackageWorker(QThread):
     """后台加载包的线程"""
