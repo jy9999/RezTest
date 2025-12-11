@@ -140,18 +140,13 @@ class PackageBrowserTab(QWidget):
     def show_package_details(self, family):
         """显示包详情"""
         self.detail_table.setRowCount(0)
-        
-        # 添加基本信息
         self.add_detail_row("包名", family.name)
-        self.add_detail_row("包族", family.qualified_name)
-        
-        # 显示版本列表
+        self.add_detail_row("包族", family.name)
         self.version_list.clear()
         versions = []
         for pkg in family.iter_packages():
             versions.append(str(pkg.version))
             self.version_list.addItem(str(pkg.version))
-        
         self.add_detail_row("版本数", str(len(versions)))
     
     def add_detail_row(self, key, value):
@@ -286,11 +281,35 @@ class EnvironmentTab(QWidget):
     
     def add_package_to_env(self):
         """添加包到环境"""
-        pkg = self.package_input.text().strip()
-        if pkg:
-            self.env_packages.append(pkg)
-            self.env_list.addItem(pkg)
-            self.package_input.clear()
+        pkg_text = self.package_input.text().strip()
+        if not pkg_text:
+            return
+
+        # 支持用逗号分隔一次添加多个，如: python-3.9,maya-2022
+        entries = [p.strip() for p in pkg_text.split(",") if p.strip()]
+        if entries:
+            self.env_packages.extend(entries)
+            for p in entries:
+                self.env_list.addItem(p)
+
+        #region agent log
+        import time, json
+        try:
+            with open(r"e:\UE\RezTest\.cursor\debug.log", "a", encoding="utf-8") as __f:
+                __f.write(json.dumps({
+                    "sessionId": "debug-session",
+                    "runId": "env-add",
+                    "hypothesisId": "H1-comma-split",
+                    "location": "rez_qt_gui.py:add_package_to_env",
+                    "message": "added packages",
+                    "data": {"raw": pkg_text, "entries": entries, "env_packages": list(self.env_packages)},
+                    "timestamp": int(time.time() * 1000)
+                }) + "\n")
+        except Exception:
+            pass
+        #endregion
+
+        self.package_input.clear()
     
     def clear_environment(self):
         """清空环境"""
@@ -305,6 +324,23 @@ class EnvironmentTab(QWidget):
             return
         
         try:
+            #region agent log
+            import time, json
+            try:
+                with open(r"e:\UE\RezTest\.cursor\debug.log", "a", encoding="utf-8") as __f:
+                    __f.write(json.dumps({
+                        "sessionId": "debug-session",
+                        "runId": "env-resolve",
+                        "hypothesisId": "H1-comma-split",
+                        "location": "rez_qt_gui.py:resolve_environment BEFORE",
+                        "message": "resolving",
+                        "data": {"env_packages": list(self.env_packages)},
+                        "timestamp": int(time.time() * 1000)
+                    }) + "\n")
+            except Exception:
+                pass
+            #endregion
+
             ctx = ResolvedContext(self.env_packages)
             
             self.result_text.setRowCount(0)
@@ -316,6 +352,21 @@ class EnvironmentTab(QWidget):
             
             QMessageBox.information(self, "成功", f"已解析 {len(ctx.resolved_packages)} 个包")
         except Exception as e:
+            #region agent log
+            try:
+                with open(r"e:\UE\RezTest\.cursor\debug.log", "a", encoding="utf-8") as __f:
+                    __f.write(json.dumps({
+                        "sessionId": "debug-session",
+                        "runId": "env-resolve",
+                        "hypothesisId": "H1-comma-split",
+                        "location": "rez_qt_gui.py:resolve_environment EXCEPTION",
+                        "message": "resolve failed",
+                        "data": {"env_packages": list(self.env_packages), "err": str(e)},
+                        "timestamp": int(time.time() * 1000)
+                    }) + "\n")
+            except Exception:
+                pass
+            #endregion
             QMessageBox.warning(self, "错误", f"解析失败: {str(e)}")
 
 
@@ -352,11 +403,15 @@ class StatusTab(QWidget):
             import rez
             self.add_status_row("Rez 版本", rez.__version__)
             
-            # 添加配置信息
-            self.add_status_row("包搜索路径", str(config.package_paths))
-            self.add_status_row("本地包路径", str(config.local_packages_path))
-            self.add_status_row("缓存路径", str(config.cache_dir))
-            self.add_status_row("插件路径", str(config.plugin_paths))
+            # 添加配置信息（兼容不同配置字段）
+            pkg_paths = getattr(config, "packages_path", None)
+            if pkg_paths is None:
+                pkg_paths = getattr(config, "package_paths", "N/A")
+            self.add_status_row("包搜索路径", str(pkg_paths))
+
+            self.add_status_row("本地包路径", str(getattr(config, "local_packages_path", "N/A")))
+            self.add_status_row("缓存路径", str(getattr(config, "cache_dir", "N/A")))
+            self.add_status_row("插件路径", str(getattr(config, "plugin_paths", "N/A")))
             
             # 统计信息
             family_count = len(list(packages.iter_package_families()))
