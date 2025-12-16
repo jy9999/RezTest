@@ -1,8 +1,9 @@
 name = "maya"
 version = "2022"
-description = "placeholder maya package for testing"
+description = "Maya 2022 package for Windows"
 authors = ["placeholder"]
 requires = []
-# keep variants empty to avoid platform family requirement
-variants = [[]]
 
+def commands():
+    env.MAYA_LOCATION = r"C:\Program Files\Autodesk\Maya2022"
+    env.PATH.prepend(r"C:\Program Files\Autodesk\Maya2022\bin")

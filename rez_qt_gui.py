@@ -32,12 +32,6 @@ def get_family_by_name(family_name):
     return None
 
 
-print('aaa')
-print('bbb')
-print('ccc')
-print('eee')
-print('ddd')
-
 class PackageWorker(QThread):
     """后台加载包的线程"""
     packages_loaded = pyqtSignal(list)
