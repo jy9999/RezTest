@@ -17,7 +17,7 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtGui import QFont, QColor, QIcon
 
 # 配置 Rez 包搜索路径
-os.environ['REZ_PACKAGES_PATH'] = r'E:\UE\RezTest\my_packages'
+os.environ['REZ_PACKAGES_PATH'] = r'D:\UE\RezTest\my_packages'
 
 from rez import packages
 from rez.config import config
